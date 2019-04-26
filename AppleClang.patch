@@ -1,0 +1,29 @@
+From a6fb9829b969858a8db53d2d7d891618acd5f953 Mon Sep 17 00:00:00 2001
+From: Marcello Mansueto <mvm@mydatamodels.com>
+Date: Sun, 7 Apr 2019 14:02:04 +0200
+Subject: [PATCH] Added AppleClang
+
+---
+ CMakeLists.txt | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 6ebf402..cc07396 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -21,6 +21,12 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+     message(FATAL_ERROR "\nCpp-Taskflow requires clang++ at least v6.0")
+   endif() 
+   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O2")
++## apple-clang
++elseif (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
++  if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "6.0")
++    message(FATAL_ERROR "\nCpp-Taskflow requires AppleClang at least v6.0")
++  endif() 
++  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O2")
+ ## microsoft visual c++
+ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+   if(NOT MSVC_VERSION GREATER_EQUAL 1914)
+-- 
+2.21.0
+
