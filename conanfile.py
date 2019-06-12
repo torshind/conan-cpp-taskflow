@@ -5,7 +5,8 @@ class CppTaskflowConan(ConanFile):
     name = "Cpp-Taskflow"
     version = "2.1.0"
     license = "MIT"
-    url = "https://cpp-taskflow.github.io/"
+    homepage = "https://cpp-taskflow.github.io/"
+    url = "https://github.com/torshind/conan-cpp-taskflow/"
     description = "Modern C++ Parallel Task Programming Library"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False]}
