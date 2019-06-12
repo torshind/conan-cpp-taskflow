@@ -2,7 +2,7 @@ from conans import ConanFile, CMake, tools
 
 
 class CppTaskflowConan(ConanFile):
-    name = "cpp-taskflow"
+    name = "Cpp-Taskflow"
     version = "2.1.0"
     license = "MIT"
     url = "https://cpp-taskflow.github.io/"
@@ -14,14 +14,14 @@ class CppTaskflowConan(ConanFile):
     exports_sources = "*"
 
     def source(self):
-        git = tools.Git()
-        git.clone("https://github.com/cpp-taskflow/cpp-taskflow.git", "master")
-        git.checkout("v" + self.version)
+        self.run("git clone --branch v"
+                 + self.version
+                 + " https://github.com/cpp-taskflow/cpp-taskflow.git")
 
     def build(self):
-        tools.patch(patch_file="AppleClang.patch")
+        tools.patch(base_path="cpp-taskflow", patch_file="AppleClang.patch")
         cmake = CMake(self)
-        cmake.configure()
+        cmake.configure(source_folder="cpp-taskflow")
         cmake.build()
         cmake.test()
 
